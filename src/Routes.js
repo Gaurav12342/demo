@@ -21,6 +21,11 @@ import EditForm from './firebase-example/EditForm';
 import DisplayEmployee from './firebase-example/Components/DisplayEmployee';
 import AddEmployee from './firebase-example/Components/AddEmployee';
 import EditEmployee from './firebase-example/Components/EditEmployee';
+import SignUp from './authentication/SignUp';
+import SignIn from './authentication/SignIn';
+import ChangePassword from './authentication/ChangePassword';
+import ForgotPassword from './authentication/ForgotPassword';
+import ManageProfile from './authentication/ManageProfile';
 
 const Routes = (props) => {
   return (
@@ -48,6 +53,11 @@ const Routes = (props) => {
           <Route exact path="/emp-list"><DisplayEmployee /></Route>
           <Route path="/emp-list/edit-emp/:id"><EditEmployee /></Route>
           <Route path="/emp-list/add-emp"><AddEmployee /></Route>
+          <Route path="/sign-up"><SignUp /></Route>
+          <Route path="/sign-in"><SignIn /></Route>
+          <Route path="/change-pass"><ChangePassword /></Route>
+          <Route path="/forgot-pass"><ForgotPassword /></Route>
+          <Route path="/emp-list/profile"><ManageProfile /></Route>
         </Switch>
       </BrowserRouter>
     </div>

@@ -1,8 +1,7 @@
 import * as firebase from 'firebase';
-// import firestore from 'firebase/firestore'
 
-// const settings = { timestampsInSnapshots: true };
 
+// const provider = new firebase.auth.GoogleAuthProvider();
 const config = {
   apiKey: "AIzaSyDKgMVyiH_EeFLWTkcIYG7GL-3y4G3SgXI",
   authDomain: "student-1f7cd.firebaseapp.com",
@@ -14,6 +13,10 @@ const config = {
   measurementId: "G-9DDYBHBK4F"
 };
 firebase.initializeApp(config);
-// firebase.firestore().settings(settings);
+export const auth = firebase.auth();
+
+// export const signInWithGoogle = () => {
+//   auth.signInWithPopup(provider);
+// };
 
 export default firebase;

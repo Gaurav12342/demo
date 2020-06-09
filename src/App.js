@@ -21,7 +21,9 @@ const App = () => {
     // <ThemeContext.Provider value={themes.background, { count, setCount }}>
     //   <Routes />
     // </ThemeContext.Provider>
-    <Routes />
+    <div>
+      <Routes />
+    </div>
   )
 }
 export default App;
