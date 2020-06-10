@@ -9,7 +9,12 @@ const ManageProfile = (props) => {
   const [data, setData] = useState([]);
   const [photoURL, setPhotoURL] = useState("");
   console.log(data, photoURL);
+
   useEffect(() => {
+    getCurrentUser()
+  }, [])
+
+  const getCurrentUser = () => {
     const user = firebase.auth().currentUser;
     if (user != null) {
       user.providerData.forEach((profile) => {
@@ -23,7 +28,7 @@ const ManageProfile = (props) => {
     } else {
       console.log("Data not found.");
     }
-  }, [])
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,7 +50,6 @@ const ManageProfile = (props) => {
     firebase.auth().currentUser.updateProfile({
       displayName: data.displayName,
       photoURL: photoURL
-      // photoURL: "https://example.com/jane-q-user/profile.jpg"
     }).then(() => {
       alert("Update profile successfully.");
       props.history.push("/emp-list");

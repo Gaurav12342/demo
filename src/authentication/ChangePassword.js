@@ -7,7 +7,6 @@ import firebase from '../firebase-example/Firebase';
 
 const ChangePassword = (props) => {
   const [validated, setValidated] = useState(false);
-  // console.log({ data });
   const [state, setState] = useState({
     oldPassword: "",
     newPassword: "",
@@ -54,7 +53,6 @@ const ChangePassword = (props) => {
     e.preventDefault();
     setValidated(true);
     if (state.newPassword === state.conPassword) {
-      // console.log(state);
       const user = firebase.auth().currentUser;
       // var newPassword = firebase.auth().getASecureRandomPassword();
 
@@ -62,7 +60,6 @@ const ChangePassword = (props) => {
         alert("Successfully update password");
         props.history.push("/emp-list");
       }).catch((error) => {
-        // An error happened.
         console.log(error);
       });
     }

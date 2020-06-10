@@ -10,11 +10,12 @@ import axios from 'axios';
 
 const SlugMaster = (props) => {
   const [record, setRecord] = useState([]);
-  // const [d, setD] = useState([]);
-  // const [modal, setModal] = useState(false);
-  // const toggle = () => setModal(!modal);
 
   useEffect(() => {
+    getRecord()
+  }, []);
+
+  const getRecord = () => {
     const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlYzE1MGU5M2Y0OGRmNWE1NTlmOGZmNDc5OWE5ZTA1OWRmMWQxYjc0YmFiZjJkYWE3YmNmZmMzZmFiODZlNTZlZWFhMTAyOTM5NjllNDBiIn0.eyJhdWQiOiI1Y2Y0YjJhNjUxYTBkZTI0ZmMwMDQ5MTIiLCJqdGkiOiJhZWMxNTBlOTNmNDhkZjVhNTU5ZjhmZjQ3OTlhOWUwNTlkZjFkMWI3NGJhYmYyZGFhN2JjZmZjM2ZhYjg2ZTU2ZWVhYTEwMjkzOTY5ZTQwYiIsImlhdCI6MTU5MDU3MjI1NCwibmJmIjoxNTkwNTcyMjU0LCJleHAiOjE2MjIxMDgyNTQsInN1YiI6IjVjMTg4MGZmNWY4NWY2MTQ4Y2I4MWQ2YiIsInNjb3BlcyI6W119.m8Ng66C5ywna5G1IKUWbZJS0mLUwDnpVKXLKTOtWtxjvp-MCIlK2SmoNQvD5m14jZrYlsyD_qvSDOr0nhbaPVLUCRP6VUoeUKgG8qtBtquopShq46y9r1W-gzhknv07TsKHCJj7rq2Tged44PkPgdnCliAZvwcksqJ5cUWXXN6S-Hls-EBOOafm0WCJpUk4tibe3fDSzKcSLw5uPArIgRobeAM9lk0rcSZy0MNdCaOPG8_05GULYwobugVcJxn-__4OcwHJpLOkSexwIdLsm0NZqZlNBDSfZjd7oPrBzjzI1ysTvistdb6tO-_M8h_N2Sqn-hkVLTPqkcRXRWMdxG_q-MDv4ekaPLTqPI7HytN4Sss3A6hDT2Deh9IXKpXCCxm0fUrGuHhRmWfMJA92iQmuPse8gi1lBQOMbP_GlTifBDCyr7KNcX9B02Smfk0qh_iWW7ZAb_zcQtOmYNFt7rcH7rNHFXVq1AOs0J7IXUrXd1-851K4sORUl1pnSC9RAKl7cbU5hre8xWMlPnhX3c_UEhcl_vDuLCeJKHzr8PrCh_-IWd4dyyTMD7ljoIEx9egqtWPsFvIXa62sassh0HdSHrN_ORSsR4eKijA5gIlIJc5DhhA3k6MEqd4rnn5veSWPvG4gpI8Gw8ReYpAeq4ZuMIj0fZGyBnb72RqQHxqw";
     const API = 'https://cors-anywhere.herokuapp.com/';
     let config = {
@@ -32,10 +33,10 @@ const SlugMaster = (props) => {
       config
     )
       .then((response) => {
-        setRecord(response);
+        setRecord(response.data.data.list);
       })
       .catch()
-  }, []);
+  }
 
   const deleteRecord = (index) => {
     console.log(index);
@@ -67,13 +68,6 @@ const SlugMaster = (props) => {
       })
   }
 
-  // footer address  : html editor 
-  // delete record : use slice for delete record
-  // save button : after save redirect to listing page
-  // save & continue : after clicking hold on this page and reset all fields
-  // image upload control in display selected image
-  //  validation : correct than green msg and required than red msg
-
   return (
     <Container>
       <div>
@@ -94,10 +88,9 @@ const SlugMaster = (props) => {
             </tr>
           </thead>
           <tbody>
-            {record && record.data && record.data.data && record.data.data.list && record.data.data.list.length > 0 && record.data.data.list.map((data, index) => {
-              // console.log("data", data._id)
+            {record && record.length > 0 && record.map((data, index) => {
               return (
-                <tr key={index}>
+                <tr key={data._id}>
                   <td>{index + 1}</td>
                   <td>{data.slug}</td>
                   {data.country && data.country.name && data.country.name.length > 0 ? <td>{data.country.name} </td> : <td>{""}</td>}

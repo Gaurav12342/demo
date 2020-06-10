@@ -50,14 +50,14 @@ const SignUp = (props) => {
           <Row>
             <Col sm="12" md={{ size: 6, offset: 3 }}>
               <h3>Registration</h3>
-              <FormGroup>
+              {/* <FormGroup>
                 <Label>Display Name</Label>
                 <Input type="text" name="displayName" id="displayName" value={state.displayName} onChange={handleChange} placeholder="with a placeholder" />
               </FormGroup>
               <FormGroup>
                 <Label>Phone Number</Label>
                 <Input type="text" name="phoneNumber" id="phoneNumber" value={state.phoneNumber} onChange={handleChange} placeholder="with a placeholder" />
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup>
                 <Label>Email</Label>
                 <Input type="email" name="email" id="exampleEmail" value={state.email} onChange={handleChange} placeholder="with a placeholder" />
@@ -71,11 +71,6 @@ const SignUp = (props) => {
               <center><p>Or <Link to="/sign-in">Sign In</Link> Using</p></center>
             </Col>
           </Row>
-
-          {/* <Button color="primary" size="lg" onClick={handleLogin}>Sign In</Button>{' '} <br />
-          <Button color="primary" size="lg" onClick={signOutUser}>Logout</Button>{' '} <br />
-          <Button color="secondary" size="lg" onClick={signGoogle}>Sign With Google</Button> {' '}
-          <Button color="secondary" size="lg" onClick={signFacebook}>Sign With Facebook</Button> {' '} */}
         </Form>
       </Container>
     </div>

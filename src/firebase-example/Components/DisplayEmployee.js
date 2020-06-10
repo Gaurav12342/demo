@@ -22,12 +22,12 @@ const DisplayEmployee = (props) => {
   console.log({ data });
 
   useEffect(() => {
+    getCurrentUser();
+    getAllEmployees();
+  }, []);
+
+  const getCurrentUser = () => {
     firebase.auth().onAuthStateChanged((user) => {
-      // user.sendEmailVerification().then(function () {
-      //   console.log("Send to email");
-      // }).catch(function (error) {
-      //   console.log("Failed Send to email");
-      // });
       if (user != null) {
         user.providerData.forEach((profile) => {
           console.log("Sign-in provider: " + profile.providerId);
@@ -41,10 +41,9 @@ const DisplayEmployee = (props) => {
         console.log("failed get the current user");
       }
     });
+  }
 
-  }, []);
-
-  useEffect(() => {
+  const getAllEmployees = () => {
     const user = firebase.auth().currentUser;
     if (user != null) {
       firebase
@@ -61,8 +60,7 @@ const DisplayEmployee = (props) => {
       alert("Please first login into the system.")
       props.history.push("/sign-in");
     }
-
-  }, []);
+  }
 
   const handleDelete = (id) => {
     firebase

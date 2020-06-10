@@ -10,6 +10,10 @@ const EditEmployee = (props) => {
   const [state, setState] = useState([]);
 
   useEffect(() => {
+    getAllEmployees()
+  }, [])
+
+  const getAllEmployees = () => {
     const getData = firebase.firestore().collection('Employees').doc(props.match.params.id);
     getData.get().then((doc) => {
       if (doc.exists) {
@@ -27,8 +31,7 @@ const EditEmployee = (props) => {
         console.log("No such document!");
       }
     })
-
-  }, [props.match.params.id])
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
