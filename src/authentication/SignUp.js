@@ -28,7 +28,7 @@ const SignUp = (props) => {
     firebase.auth().createUserWithEmailAndPassword(state.email, state.password)
       .than(() => {
         alert("User Create Successfully");
-        props.history.push("/sign-in");
+        props.history.push("/");
       })
       .catch(function (error) {
         var errorCode = error.code;
@@ -68,7 +68,7 @@ const SignUp = (props) => {
               </FormGroup>
               <Button color="primary">Sign Up</Button>{' '}
               <Button color="secondary">Cancel</Button> {' '}
-              <center><p>Or <Link to="/sign-in">Sign In</Link> Using</p></center>
+              <center><p>Or <Link to="/">Sign In</Link> Using</p></center>
             </Col>
           </Row>
         </Form>

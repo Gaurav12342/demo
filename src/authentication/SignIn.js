@@ -4,9 +4,12 @@ import { Button, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap
 import { Form } from 'react-bootstrap';
 import firebase from '../firebase-example/Firebase';
 
+
 const SignIn = (props) => {
+
   const providerGoogle = new firebase.auth.GoogleAuthProvider();
   const providerFacebook = new firebase.auth.FacebookAuthProvider();
+  // console.log(window.location.pathname);
 
   const [validated, setValidated] = useState(false);
   const [state, setState] = useState({
@@ -42,6 +45,7 @@ const SignIn = (props) => {
             var providerData = user.providerData;
             console.log(displayName, email, photoURL, emailVerified, isAnonymous, uid, providerData);
             props.history.push("/emp-list");
+
           } else {
             firebase.auth().signOut().then(function () {
               setState({ email: "", password: "" });
@@ -62,6 +66,7 @@ const SignIn = (props) => {
         }
         console.log(error);
         console.log("state", state);
+
       });
   }
 
@@ -123,7 +128,7 @@ const SignIn = (props) => {
                 <Label>Password</Label>
                 <Input type="password" name="password" id="examplePassword" value={state.password} onChange={handleChange} placeholder="password placeholder" />
               </FormGroup>
-              <Button color="primary" >Sign In</Button>{' '}
+              <Button color="primary" >Sign In </Button>{' '}
               <Button color="secondary" >Cancel</Button>{' '}
               <p>Or <Link to="/sign-up">Sign up</Link> Using</p>
               <p><Link to="/forgot-pass">Forgot</Link></p>

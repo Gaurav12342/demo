@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import './App.css';
-import Routes from './Routes';
+import Loader from 'react-loader-spinner'
+// import Routes from './Routes';
 // import ThemeContext from './context/ThemeContext';
 
+const Routes = lazy(() => import('./Routes'));
 const App = () => {
   // const themes = {
   //   light: {
@@ -22,8 +24,10 @@ const App = () => {
     //   <Routes />
     // </ThemeContext.Provider>
     <div>
-      <Routes />
-    </div>
+      <Suspense fallback={<Loader type="BallTriangle" color="#00BFFF" height={80} width={80} />}>
+        <Routes />
+      </Suspense>
+    </div >
   )
 }
 export default App;

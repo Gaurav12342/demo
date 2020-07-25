@@ -11,13 +11,16 @@ const AddSlugMaster = (props) => {
   const [image, setImage] = useState("");
   const [is_active, setIs_active] = useState(false);
   const [footerActive, setFooterActive] = useState(false);
+  
   const [getCountry, setCountry] = useState([]);
+  console.log("coutrny",getCountry);
   const [content, setContent] = useState('')
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
   const editor = useRef(null)
   // const uploadedImage = useRef(null);
   // const imageUploader = useRef(null);
 
+  console.log("Country", getCountry);
   const config = {
     readonly: false
   }

@@ -1,18 +1,11 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import {
-  Table, Button, Container, Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
-} from 'reactstrap';
+import { Table, Button, Container, Collapse, Navbar, NavbarToggler, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText } from 'reactstrap';
 import firebase from '../../firebase-example/Firebase';
+import { confirmAlert } from 'react-confirm-alert';
+import { ToastContainer, toast } from 'react-toastify';
 
 const DisplayEmployee = (props) => {
   const [state, setState] = useState([]);
@@ -70,9 +63,11 @@ const DisplayEmployee = (props) => {
       .delete()
       .then(() => {
         console.log("Delete record successfully.")
+        toast.success("Delete Record Successfully.");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Record not deleted.");
       })
   }
 
@@ -80,7 +75,7 @@ const DisplayEmployee = (props) => {
     firebase.auth().signOut()
       .then(() => {
         console.log("successfully user logout");
-        props.history.push("/sign-in");
+        props.history.push("/");
       }).catch((error) => {
         console.log(error);
       });
@@ -143,7 +138,23 @@ const DisplayEmployee = (props) => {
                   <td>{record.gender}</td>
                   <td>
                     <Button outline color="primary" onClick={() => { props.history.push(`/emp-list/edit-emp/${record.id}`) }}>Edit</Button>{' '}
-                    <Button outline color="danger" onClick={() => { handleDelete(record.id) }}>Delete</Button>{' '}
+                    <Button outline color="danger" onClick={() => {
+                      confirmAlert({
+                        title: 'Confirm to delete',
+                        message: 'Are you sure to do this.',
+                        buttons: [
+                          {
+                            label: 'Yes',
+                            onClick: () => handleDelete(record.id)
+                          },
+                          {
+                            label: 'No',
+                            onClick: () => props.history.push("/emp-list")
+                          }
+                        ]
+                      })
+                    }}>Delete</Button>{' '}<ToastContainer />
+                    {/*  handleDelete(record.id) */}
                   </td>
                 </tr>
               )

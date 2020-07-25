@@ -13,7 +13,7 @@ const EditSlugMaster = (props) => {
   const [content, setContent] = useState('')
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
   const editor = useRef(null)
-  console.log(record && record.seo && record.seo.meta_title)
+  // console.log("get+++", props);
 
   const config = {
     readonly: false
@@ -282,5 +282,6 @@ const EditSlugMaster = (props) => {
     </Container >
   )
 }
+
 
 export default withRouter(EditSlugMaster);
